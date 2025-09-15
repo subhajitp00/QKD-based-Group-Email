@@ -10,5 +10,6 @@ This project combines **Quantum Key Distribution (QKD)** using the **BB84 protoc
 
 1. **Start the Conference Key Generation Server**  
    ```bash
-   python conference_keygen/run_with_waitress.py ngrok or    python conference_keygen/run_with_waitress.py 
+   python conference_keygen/run_with_waitress.py ngrok
+   python conference_keygen/run_with_waitress.py 
 2.**Run clients to join the session**
