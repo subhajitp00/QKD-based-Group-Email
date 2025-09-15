@@ -21,8 +21,8 @@ This project combines **Quantum Key Distribution (QKD)** using the **BB84 protoc
     python run_client.py 2    // for 2 client .
 **After completing four steps, the conference key is stored in the local DB.***
 5.**Emailing by utilizing conference key**
-```bash
-python gui.py  // this starts the email client in pop-up windows
+    ```bash
+     python gui.py  // this starts the email client in pop-up windows
 6.**Login with your Gmail or Zoho credentials (email ID + App Password)**  
    - For Gmail: create an [App Password](https://support.google.com/accounts/answer/185833) under Google Account → Security → App Passwords.  
    - For Zoho Mail: generate an [App Password here](https://accounts.zoho.com/apppasswords).
