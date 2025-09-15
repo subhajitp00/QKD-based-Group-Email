@@ -9,13 +9,13 @@ This project combines **Quantum Key Distribution (QKD)** using the **BB84 protoc
 ## Quick Start 
 1.**First, install all the dependencies mentioned in requirements.txt**
 2. **generate public-private key pair for server**
-    ```bash
-    python keygen.py alice_server   
+       ```bash
+       python keygen.py alice_server   
 
 3. **Start Server**  
-   ```bash
-   python run_with_waitress.py ngrok // ngrok server
-   python run_with_waitress.py    // for local server
+      ```bash
+        python run_with_waitress.py ngrok // ngrok server
+        python run_with_waitress.py    // for local server
 4.**Run clients to join the session**
     ```bash
     python run_client.py 2    // for 2 client .
