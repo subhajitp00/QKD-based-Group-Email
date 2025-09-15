@@ -6,29 +6,44 @@ This project combines **Quantum Key Distribution (QKD)** using the **BB84 protoc
 
 ---
 
-## Quick Start 
-1.**First, install all the dependencies mentioned in requirements.txt**
-2. **generate public-private key pair for server**
-       ```bash
-       python keygen.py alice_server   
+## 🚀 Quick Start
 
-3. **Start Server**  
-      ```bash
-        python run_with_waitress.py ngrok // ngrok server
-        python run_with_waitress.py    // for local server
-4.**Run clients to join the session**
+1.  **Install Dependencies**
+    First, install all the dependencies mentioned in the `requirements.txt` file.
+
+2.  **Generate Server Keys**
+    Create a public-private key pair for the server.
     ```bash
-    python run_client.py 2    // for 2 client .
-**After completing four steps, the conference key is stored in the local DB.***
-5.**Emailing by utilizing conference key**
+    python keygen.py alice_server
+    ```
+
+3.  **Start the Server**
+    You can run the server locally or expose it using ngrok.
     ```bash
-     python gui.py  // this starts the email client in pop-up windows
-6.**Login with your Gmail or Zoho credentials (email ID + App Password)**  
-   - For Gmail: create an [App Password](https://support.google.com/accounts/answer/185833) under Google Account → Security → App Passwords.  
-   - For Zoho Mail: generate an [App Password here](https://accounts.zoho.com/apppasswords).
-**Enjoy QKD safe group emailing**
+    # For a local server
+    python run_with_waitress.py
 
- 
+    # For an ngrok server
+    python run_with_waitress.py ngrok
+    ```
 
-    
+4.  **Run Clients**
+    Run the client script to join the session. The argument specifies the number of clients.
+    ```bash
+    # Example for 2 clients
+    python run_client.py 2
+    ```
+    *After these steps are complete, the shared conference key is securely generated and stored in the local database.*
 
+5.  **Launch the Email Client**
+    Start the graphical user interface for the secure email client.
+    ```bash
+    python gui.py
+    ```
+
+6.  **Log In to Your Email Account**
+    Log in using your email address and an **App Password**.
+    -   **Gmail**: Create an [App Password](https://support.google.com/accounts/answer/185833) by navigating to Google Account → Security → App Passwords.
+    -   **Zoho Mail**: Generate an [App Password](https://accounts.zoho.com/apppasswords) from your account settings.
+
+**Enjoy QKD-safe group emailing!** 📧✨
