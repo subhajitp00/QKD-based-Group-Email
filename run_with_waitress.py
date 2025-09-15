@@ -4,14 +4,14 @@ from pyngrok import ngrok
 import atexit
 
 # --- Hardcoded ngrok token ---
-NGROK_TOKEN = "31udQW1m7cqWoQ2bnXLaeKmZOEv_4LNfz1JuPXc21yuf1orru"   # replace with your token
+NGROK_TOKEN = "replace with your token"  
 
 
 def start_ngrok(port=5000):
     """Start ngrok tunnel using the hardcoded token."""
     ngrok.set_auth_token(NGROK_TOKEN)
     tunnel = ngrok.connect(port, "http")
-    print(f"\n🌐 ngrok tunnel active: {tunnel.public_url} → http://127.0.0.1:{port}\n")
+    print(f"\n ngrok tunnel active: {tunnel.public_url} → http://127.0.0.1:{port}\n")
 
     # Clean up on exit
     def cleanup():
@@ -43,3 +43,4 @@ if __name__ == '__main__':
     threads = 10
     print(f'Starting Flask app (Parallel mode, {threads} threads) on http://{host_address}:5000...')
     serve(app, host=host_address, port=5000, threads=threads)
+
