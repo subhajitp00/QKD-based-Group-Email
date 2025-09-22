@@ -1,0 +1,16 @@
+ngrok
+flask 
+pyngrok
+qiskit==1.0.2 
+requests 
+numpy
+qiskit_aer==0.13.3
+waitress
+pycryptodome
+cryptography
+dilithium-py
+gunicorn
+radis
+psutil
+selenium #pgp
+python-gnupg #pgp
