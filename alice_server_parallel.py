@@ -359,5 +359,6 @@ if __name__ == '__main__':
         import manage_allowlist
         manage_allowlist.db_init()
 
-    print("\n✅ Server setup tasks complete.")
+    print("\nServer setup tasks complete.")
+
     print("To run the truly parallel server, use your runner script (e.g., 'python run_waitress.py').")
