@@ -1,8 +1,8 @@
-# Multi-party QKD-Based Secure Group Email System  
+#Q-email: Multi-party QKD-Based Secure Group Email System  
 
-This project combines **Quantum Key Distribution (QKD)** using the **BB84 protocol** with a **Secure Email Client** to enable **multi-party encrypted communication**. It also includes **performance evaluation scripts** for comparing **QKD-based email (Q-Email)** with **OpenPGP**.
+> Multi-party **BB84** is used to exchange quantum secured conference keys in client-server architecture with mutual authentication by **PQC*"based digital signature **(ML-DSA)**
 
-> This framework demonstrates how **quantum-generated conference keys** can be integrated with a real-world email system for secure communication between multiple remote parties.
+> This framework demonstrates how **quantum-generated conference keys** can be integrated with a real-world email system for end-to-end secured communication between multiple remote parties.
 
 ---
 
