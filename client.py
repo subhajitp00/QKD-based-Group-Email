@@ -55,10 +55,10 @@ def wait_for_consensus(party_name, bases, results, max_attempts=20, poll_interva
             resp.raise_for_status()
             data = resp.json()
             if data.get('status') == 'consensus_reached':
-                print(f"  > ✅ Consensus reached for {party_name}!")
+                print(f"  >  Consensus reached for {party_name}!")
                 return data
         except requests.exceptions.RequestException as e:
-            print(f"  > ⚠️  Could not poll server: {e}")
+            print(f"  >  Could not poll server: {e}")
 
     raise RuntimeError(f"Failed to reach consensus for {party_name}.")
 
@@ -85,7 +85,7 @@ def run_client(party_name):
         with open(SERVER_PUB_KEY_FILE, 'rb') as f:
             server_public_key = f.read()
     except FileNotFoundError:
-        print(f"❌ ERROR: Server public key file '{SERVER_PUB_KEY_FILE}' not found.")
+        print(f" ERROR: Server public key file '{SERVER_PUB_KEY_FILE}' not found.")
         print("  > Please copy it from the server machine to this directory.")
         return
 
@@ -95,13 +95,13 @@ def run_client(party_name):
         response.raise_for_status()
         server_signature = bytes.fromhex(response.json().get('signature'))
     except requests.exceptions.RequestException as e:
-        print(f"❌ ERROR: Could not connect to the server at {ALICE_URL}. Is it running? Details: {e}")
+        print(f" ERROR: Could not connect to the server at {ALICE_URL}. Is it running? Details: {e}")
         return
     
     if Dilithium2.verify(server_public_key, client_challenge.encode(), server_signature):
-        print("  > ✅ SUCCESS: Server identity verified.")
+        print("  > SUCCESS: Server identity verified.")
     else:
-        print("  > ❌ DANGER: Server signature is NOT valid. Aborting.")
+        print("  > DANGER: Server signature is NOT valid. Aborting.")
         return
 
     # Part B: Client Proves Its Identity to Server
@@ -114,7 +114,7 @@ def run_client(party_name):
         kdf_size = start_resp['kdf_size']
         print(f"  > Received challenge from server: {pqc_challenge}")
     except requests.exceptions.RequestException as e:
-        print(f"❌ ERROR: Could not start session with server. Details: {e}"); return
+        print(f" ERROR: Could not start session with server. Details: {e}"); return
 
     with open(priv_key_file, "rb") as f:
         private_key = f.read()
@@ -127,14 +127,14 @@ def run_client(party_name):
         auth_resp.raise_for_status()
         status = auth_resp.json().get('status')
     except requests.exceptions.RequestException as e:
-        print(f"❌ ERROR: Authentication request failed. Server responded with: {e.response.text if e.response else 'No Response'}")
+        print(f" ERROR: Authentication request failed. Server responded with: {e.response.text if e.response else 'No Response'}")
         return
     
     if status != 'authenticated':
-        print(f"  > ❌ FAILED! Server rejected our authentication. Reason: {status}")
+        print(f"  >  FAILED! Server rejected our authentication. Reason: {status}")
         return
     
-    print(f"  > ✅ SUCCESS! Server has authenticated us.")
+    print(f"  >  SUCCESS! Server has authenticated us.")
     print("\nMutual authentication complete. Proceeding to BB84 Key Exchange.")
 
     # --- STEP 2: BB84 KEY EXCHANGE ---
@@ -156,7 +156,7 @@ def run_client(party_name):
 
     # Check for HTTP errors (like 500 Internal Server Error)
     if response.status_code != 200:
-        print(f"❌ ERROR: Server returned an error (HTTP {response.status_code}).")
+        print(f" ERROR: Server returned an error (HTTP {response.status_code}).")
         try:
             # Try to print the JSON error message from the server
             error_data = response.json()
@@ -196,9 +196,9 @@ def run_client(party_name):
         response = requests.post(f"{ALICE_URL}/confirm_storage", json=confirm_payload, timeout=15)
         response.raise_for_status() # This will raise an error for 4xx or 5xx status codes
         
-        print("  > ✅ Confirmation successfully sent and acknowledged by server.")
+        print("  >  Confirmation successfully sent and acknowledged by server.")
     except requests.exceptions.RequestException as e:
-        print(f"  > ⚠️  WARNING: Could not send storage confirmation to server. The key is saved locally, but the server may not know. Details: {e}")
+        print(f"  >  WARNING: Could not send storage confirmation to server. The key is saved locally, but the server may not know. Details: {e}")
         return
     # --- SAVE FINAL KEY ---
     with sqlite3.connect(db_file) as conn:
@@ -215,7 +215,7 @@ def run_client(party_name):
     cursor.execute("INSERT OR REPLACE INTO conference_keys (uuid, conference_key, indices, key_length, key_generated_at, expires_at) VALUES (?, ?, ?, ?, ?, ?)",
                    (conf_key_uuid, local_conf_key, ','.join(map(str, indices)), len(local_conf_key), key_generated_at, expires_at))
     conn.commit()
-    print(f"\n✅ Conference key saved to '{db_file}' with UUID: {conf_key_uuid}")
+    print(f"\n Conference key saved to '{db_file}' with UUID: {conf_key_uuid}")
      
 
 # --- MODIFIED: Main execution block uses simple sys.argv parsing ---
@@ -230,4 +230,5 @@ if __name__ == "__main__":
     party_name = sys.argv[1].lower()
     
     # Run the client with the provided name
+
     run_client(party_name)
