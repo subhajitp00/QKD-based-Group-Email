@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Working Encryption Utilities for QKD Email Client
+
 Provides AES-192 CBC encryption for messages and file attachments
 """
 
