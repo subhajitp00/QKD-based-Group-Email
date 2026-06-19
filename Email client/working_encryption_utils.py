@@ -54,7 +54,7 @@ def get_key_by_uuid(uuid, db_file=DB_FILE):
         print(f"[CRYPTO] FAILURE: No key found for UUID: {uuid}")
         raise Exception("No key found for the given UUID.")
     
-    # --- CORRECTED: The variable from the database is 'key', not 'conference_key'. ---
+    
     key, expires_at = row
     if is_key_expired(expires_at):
         print(f"[CRYPTO] FAILURE: Key for UUID {uuid} has expired at {expires_at}.")
@@ -77,7 +77,7 @@ def get_latest_valid_uuid(db_file=DB_FILE):
     print("[CRYPTO] Searching for the latest valid conference key UUID...")
     conn = sqlite3.connect(db_file)
     cursor = conn.cursor()
-    # --- CORRECTED: Changed "ORDER BY key" to "ORDER BY key_generated_at" for consistency. ---
+    
     cursor.execute("SELECT uuid, expires_at FROM conference_keys ORDER BY key_generated_at DESC")
     for uuid, expires_at in cursor.fetchall():
         if not is_key_expired(expires_at):
