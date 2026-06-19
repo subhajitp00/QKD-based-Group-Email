@@ -50,8 +50,6 @@
 
 **Accepted conference paper**
 **Subhajit Pal, Ajanta Das & Amlan Chakrabarti, “Q-email: A Conference Key-based Quantum Safe Encryption
-
 Technique for End-to-End Group Communication,” QuantumKol-2025 (Intl. Conference on Quantum Technology and
-
-Applications), Kolkata, 17–19 Dec. 2025. [Accepted]***
+Applications), Kolkata, 17–19 Dec. 2025. [Accepted]**
 
