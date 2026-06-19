@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """
-Complete Working and Corrected GUI for Secure QKD Email Client
 Features: Interactive login, email sending, fetching, attachment encryption, and a diagnostics tab.
 """
 
