@@ -21,7 +21,7 @@ ALICE_URL = "http://127.0.0.1:5000"  # Local server URL
 SERVER_PUB_KEY_FILE = "alice_server_dilithium.pub"
 BACKEND = Aer.get_backend("qasm_simulator")
 
-# --- Helper Functions (Unchanged) ---
+# --- Helper Functions
 def measure_circuits(circuits, bases):
     """Measures a list of quantum circuits with specified bases."""
     results = []
