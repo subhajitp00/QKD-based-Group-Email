@@ -27,7 +27,7 @@ PUB_KEY_FILE = f"{SERVER_NAME}_dilithium.pub"
 SECURITY_DB_FILE = "security.db"
 desired_key_length, kdf_size = 1024, 32
 
-# --- PQC Digital Signature (Unchanged) ---
+# --- PQC Digital Signature  ---
 def sign_message(msg):
     with open(PRIV_KEY_FILE, "rb") as f:
         private_key = f.read()
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS conference_keys (
 )''')
 conference_db_conn.commit()
 
-# --- Allowlist Helper (Unchanged) ---
+# --- Allowlist Helper 
 def get_public_key_from_allowlist(party_name):
     if not os.path.exists(SECURITY_DB_FILE): return None
     with sqlite3.connect(SECURITY_DB_FILE) as conn:
@@ -52,7 +52,7 @@ def get_public_key_from_allowlist(party_name):
         row = cursor.fetchone()
         return bytes.fromhex(row[0]) if row else None
 
-# --- Cryptographic Helpers (Unchanged) ---
+# --- Cryptographic Helpers 
 def generate_random_nonce(length=16):
     return ''.join(random.choice('01') for _ in range(length))
 def KDF(input_str, length=32):
@@ -101,7 +101,7 @@ class BB84Party:
             key_bin = ''.join(str(b) for b in self.sifted_key)
             self.extended_key = extend_key(key_bin, nonce, required_length, kdf_size)
 
-# --- Performance Logging Helper (Unchanged) ---
+# --- Performance Logging Helper 
 def log_performance(filename, headers, data_row):
     if not os.path.exists(filename):
         with open(filename, "w") as f: f.write(headers + "\n")
@@ -348,7 +348,7 @@ def confirm_storage():
             start_time = None  # reset global timer for next run
 
         return jsonify({'status': 'confirmation_received'})
-# --- Main Execution Block for Setup (Unchanged) ---
+# --- Main Execution Block for Setup 
 if __name__ == '__main__':
     if not (os.path.exists(PUB_KEY_FILE) and os.path.exists(PRIV_KEY_FILE)):
         print(f"Generating PQC keys for '{SERVER_NAME}'...")
